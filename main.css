@@ -1,10 +1,13 @@
 #background {
   width: 100vw;
   height: 100vh;
+
   background-position: center;
   background-size: cover;
-  text-align: right;
-  display: flow-root;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 html,
