@@ -4,7 +4,7 @@ const weatherElement = document.getElementById("weather");
 
 async function getBackground() {
   const url =
-    "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
+    "https://api.nasa.gov/planetary/apod?api_key=DqOb726b7R21ckMRBRY36YmyPfAykZlbgR5Q3FQD";
 
   try {
     const response = await fetch(url);
@@ -98,7 +98,7 @@ function loadWeather() {
       const current = weatherData.current;
 
       weatherElement.innerText =
-        `${current.temperature_2m} °C \t` +
+        `${current.temperature_2m} °C ` +
         `${current.wind_speed_10m} Km/h`;
     },
     () => {
