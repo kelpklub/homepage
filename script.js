@@ -36,16 +36,28 @@ function updateClock() {
   let minutes = date.getMinutes();
   let seconds = date.getSeconds();
 
+  const meridiem = hours >= 12 ? "PM" : "AM";
+
+  
+
+  if (hours >12) {
+    hours = hours- 12;
+  }
+  else if (hours == 0){
+    hours = 12;
+  }
+
   hours = String(hours).padStart(2, "0");
   minutes = String(minutes).padStart(2, "0");
   seconds = String(seconds).padStart(2, "0");
 
-  timeElement.innerText = `${hours}:${minutes}:${seconds}`;
+  timeElement.innerText =
+    `${hours}:${minutes}:${seconds} ${meridiem}`;
 }
 
 async function getWeather(latitude, longitude) {
   const url =
-    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m,precipitation_probability&temperature_unit=fahrenheit&wind_speed_unit=mph`;
+    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m,precipitation_probability&temperature_unit=celsius&wind_speed_unit=kmh`;
 
   try {
     const response = await fetch(url);
@@ -86,9 +98,8 @@ function loadWeather() {
       const current = weatherData.current;
 
       weatherElement.innerText =
-        `${current.precipitation_probability}% ` +
-        `${current.temperature_2m}°F ` +
-        `${current.wind_speed_10m} MPH`;
+        `${current.temperature_2m} °C \t` +
+        `${current.wind_speed_10m} Km/h`;
     },
     () => {
       weatherElement.innerText = "Location denied";
