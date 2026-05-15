@@ -37,6 +37,13 @@ p {
   margin: 1vw;
 }
 
+#quote {
+  font-size: 4.5vh;
+  font-style: italic;
+  margin:1vw;
+
+}
+
 .gloss {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 16px;

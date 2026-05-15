@@ -1,6 +1,7 @@
 const background = document.getElementById("background");
 const timeElement = document.getElementById("time");
 const weatherElement = document.getElementById("weather");
+const quoteElement = document.getElementById("quote");
 
 async function getBackground() {
   const url =
@@ -76,6 +77,22 @@ async function getWeather(latitude, longitude) {
     return null;
   }
 }
+async function getQuote(){
+  const url = "https://api.quotable.io/random";
+  try{
+    const response =await fetch(url);
+    if (!response.ok){
+      throw new Error (`Response status: ${response.status}`);
+    }
+    const result= await response.json();
+    console.log(result);
+    return result;
+  }
+  catch(error){
+    console.log(error);
+    return null;
+  }
+}
 
 function loadWeather() {
   if (!navigator.geolocation) {
@@ -107,7 +124,7 @@ function loadWeather() {
   );
 }
 
-window.onload = function () {
+window.onload = async function () {
   getBackground().then(function (imageUrl) {
     if (!imageUrl) return;
 
@@ -115,7 +132,14 @@ window.onload = function () {
 
     background.style["background-image"] = `url('${imageUrl}')`;
   });
-
+  
+  const quote =await getQuote();
+  if (quote){
+    quoteElement.innerText=`"${quote.content}" `
+  }
+  else{
+    quoteElement.innerText="Quote not found T_T";
+  }
   updateClock();
   setInterval(updateClock, 1000);
 
