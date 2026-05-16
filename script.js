@@ -2,6 +2,7 @@ const background = document.getElementById("background");
 const timeElement = document.getElementById("time");
 const weatherElement = document.getElementById("weather");
 const quoteElement = document.getElementById("quote");
+const authorElement = document.getElementById("author");
 
 async function getBackground() {
   const url =
@@ -35,7 +36,7 @@ function updateClock() {
 
   let hours = date.getHours();
   let minutes = date.getMinutes();
-  let seconds = date.getSeconds();
+  
 
   const meridiem = hours >= 12 ? "PM" : "AM";
 
@@ -50,10 +51,10 @@ function updateClock() {
 
   hours = String(hours).padStart(2, "0");
   minutes = String(minutes).padStart(2, "0");
-  seconds = String(seconds).padStart(2, "0");
+
 
   timeElement.innerText =
-    `${hours}:${minutes}:${seconds} ${meridiem}`;
+    `${hours}:${minutes}  ${meridiem}`;
 }
 
 async function getWeather(latitude, longitude) {
@@ -78,7 +79,7 @@ async function getWeather(latitude, longitude) {
   }
 }
 async function getQuote(){
-  const url = "https://api.quotable.io/random";
+  const url = "https://api.quotable.io/random?maxLength=100";
   try{
     const response =await fetch(url);
     if (!response.ok){
@@ -132,13 +133,15 @@ window.onload = async function () {
 
     background.style["background-image"] = `url('${imageUrl}')`;
   });
-  
+
   const quote =await getQuote();
   if (quote){
     quoteElement.innerText=`"${quote.content}" `
+    authorElement.innerText=`— ${quote.author}`
   }
   else{
     quoteElement.innerText="Quote not found T_T";
+    authorElement.innerText="— A Wise Man";
   }
   updateClock();
   setInterval(updateClock, 1000);

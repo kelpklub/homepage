@@ -6,8 +6,9 @@
   background-size: cover;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  gap: 2px;
 }
 
 html,
@@ -28,20 +29,31 @@ p {
 }
 
 #time {
-  font-size: 15vh;
+  font-size: 18vh;
+  min-width: 10ch;
   margin: 1vw;
+  font-family: orbitron, sans-serif;
+  font-variant-numeric: tabular-nums;
 }
 
 #weather {
   font-size: 5vh;
   margin: 1vw;
+  font-family: orbitron, sans-serif;
 }
 
 #quote {
-  font-size: 4.5vh;
+  font-size: 8vh;
   font-style: italic;
-  margin:1vw;
+  font-family: playfair, serif;
+  text-align: center;
 
+}
+#author{
+  font-size: 4vh;
+  font-style: italic;
+  font-family: playfair, serif;
+  text-align: right;
 }
 
 .gloss {
@@ -51,7 +63,20 @@ p {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+  text-align:center;
   display: inline-block;
-  margin: 5vw;
+  margin-top: 5vw;
+  margin-bottom: 2vw;
+  padding: 1vw;
+}
+.quote {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: inline-block;
+  margin: 1vw;
   padding: 1vw;
 }
